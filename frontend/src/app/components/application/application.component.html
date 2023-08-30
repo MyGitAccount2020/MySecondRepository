@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Review Application</h2>
+    
+    <div class="application-details">
+      <p><strong>Business Name:</strong> {{ businessDetails.businessName }}</p>
+      <p><strong>Loan Amount:</strong> {{ businessDetails.loanAmount }}</p>
+      <p><strong>Selected Accounting Provider:</strong> {{ selectedAccountingProvider }}</p>
+    </div>
+    
+    <h3>Balance Sheet</h3>
+    <div *ngIf="balanceSheet.length > 0">
+      <ul>
+        <li *ngFor="let entry of balanceSheet">
+          Year: {{ entry.year }}, Month: {{ entry.month }}, Profit/Loss: {{ entry.profitOrLoss }}, Asset Value: {{ entry.assetValue }}
+        </li>
+      </ul>
+    </div>
+    
+    <button (click)="submitReview()">Submit Review</button>
+  </div>
+  

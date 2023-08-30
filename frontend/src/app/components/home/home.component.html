@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Welcome to the Business Loan Application System</h1>
+    <form (ngSubmit)="submitApplication()">
+      <label for="businessName">Business Name:</label>
+      <input [(ngModel)]="businessDetails.businessName" [ngModelOptions]="{ standalone: true }">
+      
+      <label for="loanAmount">Loan Amount:</label>
+      <input type="number" id="loanAmount" [(ngModel)]="businessDetails.loanAmount" [ngModelOptions]="{ standalone: true }" required>
+      
+      <label for="accountingProvider">Select Accounting Provider:</label>
+      <select id="accountingProvider" [(ngModel)]="selectedAccountingProvider" [ngModelOptions]="{ standalone: true }">
+        <option *ngFor="let provider of accountingProviders" [value]="provider">{{ provider }}</option>
+      </select>
+      
+      <button type="button" (click)="requestBalanceSheet()">Request Balance Sheet</button>
+      
+      <div *ngIf="balanceSheet">
+        <h2>Balance Sheet</h2>
+        <ul>
+          <li *ngFor="let entry of balanceSheet">
+            Year: {{ entry.year }}, Month: {{ entry.month }}, Profit/Loss: {{ entry.profitOrLoss }}, Asset Value: {{ entry.assetValue }}
+          </li>
+        </ul>
+      </div>
+      
+      <button type="button" (click)="reviewComplete()">Review Complete</button>
+      <button type="submit">Submit Application</button>
+    </form>
+    <router-outlet></router-outlet>
+  </div>
+  
